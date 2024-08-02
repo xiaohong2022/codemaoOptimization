@@ -282,8 +282,8 @@ XMLHttpRequest.prototype.open = function () {
                           </div>
                           ${
                             type === ""
-                              ? ""
-                              : `
+                            ? ""
+                            : `
                           <span class="r-work_shop-r-details-component-project_dialog--workshop_name">${type}</span>`
                           }
                         </div>
@@ -763,6 +763,10 @@ XMLHttpRequest.prototype.open = function () {
               document.querySelector(".forum_editor .mce-edit-area.mce-container.mce-panel iframe").contentWindow.document.body.style.color = "";
             } catch (e) {}
           });
+          // 语雀编辑器
+          if (document.querySelector("#yuque")) {
+            document.querySelector("#yuque").contentWindow.postMessage("light", "*");
+          }
           if ((window.location.href.indexOf("community") != -1 || window.location.href.indexOf("wiki/forum/") != -1) && parseInt(window.location.href.slice(25 + 10)) && document.querySelector("iframe[allowfullscreen]")) {
             document.querySelector("iframe[allowfullscreen]").src = document.querySelector("iframe[allowfullscreen]").src;
             if (document.querySelector("iframe[allowfullscreen]").attachEvent) {
@@ -793,6 +797,10 @@ XMLHttpRequest.prototype.open = function () {
               document.querySelector(".forum_editor .mce-edit-area.mce-container.mce-panel iframe").contentWindow.document.body.style.color = "#fff";
             } catch (e) {}
           });
+          // 语雀编辑器
+          if (document.querySelector("#yuque")) {
+            document.querySelector("#yuque").contentWindow.postMessage("dark", "*");
+          }
           if ((window.location.href.indexOf("community") != -1 || window.location.href.indexOf("wiki/forum/") != -1) && parseInt(window.location.href.slice(25 + 10)) && document.querySelector("iframe[allowfullscreen]")) {
             // document.querySelector("iframe[allowfullscreen]").src = document.querySelector("iframe[allowfullscreen]").src;
             if (document.querySelector("iframe[allowfullscreen]").attachEvent) {
@@ -936,7 +944,7 @@ XMLHttpRequest.prototype.open = function () {
                   {
                       color:#fff!important
                   }
-  
+
                   .r-discover--header .r-discover--switch-box li:not(.r-discover--active),
                   .c-post_list--post_container .c-post_list--post_header span,
                   .r-discover-c-tagList--sort_cont .r-discover-c-tagList--sort_item,
@@ -2190,7 +2198,7 @@ XMLHttpRequest.prototype.open = function () {
             window.location.href.indexOf("wiki/novel") == -1
           ) {
             if (Boolean(localStorage.getItem("md-use")) && document.getElementsByClassName("r-community-c-forum_sender--option")[0].style.display != "none") {
-              bcm_markdown();
+              bcm_markdown(theme); // 调用 语雀编辑器初始化方法 并传入主题
             }
             if (Boolean(localStorage.getItem("md-use"))) {
               $(".forum_editor .mce-tinymce.mce-container.mce-panel").hide();
@@ -2458,7 +2466,7 @@ XMLHttpRequest.prototype.open = function () {
       {
           background: var(--second-color)!important;
       }
-  
+
       .r-community-r-detail-c-report_posts--option,
       .mce-foot .mce-first.mce-primary,
       .r-community-c-forum_editor--save,
@@ -2546,7 +2554,7 @@ XMLHttpRequest.prototype.open = function () {
           background: var(--second-color)!important;
           color: white!important;
       }
-  
+
       .mce-btn:hover,
       .r-community-r-detail--roules_btn:hover,
       .r-community-r-detail-c-comment_reply--reply_btn:hover,
@@ -2621,7 +2629,7 @@ XMLHttpRequest.prototype.open = function () {
       {
           color: var(--main-color)!important;
       }
-  
+
       .r-community-r-detail-c-report_posts--editor:focus,
       .mce-foot .mce-btn:hover,
       .r-community-r-detail-c-report_comment--editor:focus,
@@ -2671,7 +2679,7 @@ XMLHttpRequest.prototype.open = function () {
       {
           border-color:var(--main-color)!important;
       }
-  
+
       .r-discover--header .r-discover--search-box input:focus + div > .r-discover--icon,
       .c-post_box-post_cont--icon_search.c-post_box-post_cont--focus,
       .r-work_manager-c-action_button--icon.r-work_manager-c-action_button--link,
@@ -2702,14 +2710,14 @@ XMLHttpRequest.prototype.open = function () {
           background-color: var(--second-color)!important;
           border-radius: 2px;
       }
-  
+
       .r-community--notic_item_icon.r-community--sort_2,
       .r-community--notic_item_icon.r-community--sort_3{
           background-image: url(https://static.codemao.cn/coco/player/unstable/rynzhrEzj.image/svg+xml?hash=FuzcLsihkqej0iPVb6rfMO2aBIUv)!important;
           background-color: var(--main-color)!important;
           border-radius: 2px;
       }
-  
+
       .r-work-c-comment_area-c-comment_editor--content_container .r-work-c-comment_area-c-comment_editor--edit_emotion .r-work-c-comment_area-c-comment_editor--insert_emotiion.r-work-c-comment_area-c-comment_editor--active .r-work-c-comment_area-c-comment_editor--icon_emotion,
       .r-work-c-comment_area-c-comment_editor--content_container .r-work-c-comment_area-c-comment_editor--edit_emotion .r-work-c-comment_area-c-comment_editor--insert_emotiion:hover .r-work-c-comment_area-c-comment_editor--icon_emotion,
       .c-post_list--post_container .c-post_list--post_title .c-post_list--status_icon.c-post_list--up,
@@ -2865,7 +2873,7 @@ XMLHttpRequest.prototype.open = function () {
       .r-discover--header .r-discover--search-box .r-discover--icon{
           background: url(https://cdn-community.codemao.cn/community_frontend/asset/icon_sprite_1fd27.svg) no-repeat -215px -202px!important;
       }
-  
+
       .index__header-brand___2nK8h {
           width: 107px;
           height: 100%;
@@ -2877,14 +2885,14 @@ XMLHttpRequest.prototype.open = function () {
           align-items: center;
           justify-content: flex-end;
       }
-  
+
       #zhichiBtnBox,
       .app__popup___SJlRS,
       .app__go-to-top___35N8W,
       .index__footer_wrap___3SAeC {
           display:none;
       }
-  
+
       .c-dialog--dialog_cover {
           position: absolute;
           display: none;
@@ -2895,11 +2903,11 @@ XMLHttpRequest.prototype.open = function () {
           opacity: .5;
           background: #000;
       }
-  
+
       .c-dialog--dialog_wrap .c-dialog--dialog_cover {
         display: unset;
       }
-  
+
       button, div, input, textarea {
           outline: 0;
           padding: 0;
@@ -2912,7 +2920,7 @@ XMLHttpRequest.prototype.open = function () {
       ::-webkit-scrollbar-track-piece {
           background: unset;
       }
-  
+
       .r-work-c-work_info--container .r-work-c-work_info--work_name:hover {
             white-space: unset;
             overflow: unset;
@@ -2920,11 +2928,11 @@ XMLHttpRequest.prototype.open = function () {
             height: auto;
             font-size: 24px;
       }
-  
+
       .swal-footer {
         text-align: center;
       }
-      
+
       .c-navigator--header-content .c-navigator--kn_wrap {
         display:none;
       }
@@ -3120,7 +3128,7 @@ XMLHttpRequest.prototype.open = function () {
       .r-work_shop-r-details-component-project_dialog--container {
         height: 525px !important;
       }
-  
+
       .user-status {
         width: 30px;
         height: 30px;
@@ -3130,13 +3138,13 @@ XMLHttpRequest.prototype.open = function () {
         right: 15px;
         bottom: 15px;
       }
-  
+
       .ne-doc-major-editor {
         height: 300px;
         border: 1px solid hsla(0,0%,40%,.28);
         border-radius: 4px;
       }
-  
+
       #yuque::-webkit-scrollbar {
         display:none;
       }
@@ -3150,11 +3158,12 @@ XMLHttpRequest.prototype.open = function () {
     }
   }
 
-  function bcm_markdown() {
+  // 语雀编辑器
+  function bcm_markdown(theme) {
     if (document.querySelector(".forum_editor:not(.ne-doc-major-editor)")) {
       document.querySelector(".forum_editor").classList.add("ne-doc-major-editor");
       $(".r-community-c-forum_sender--bottom_options .r-community-c-forum_sender--option").after($(".r-community-c-forum_sender--bottom_options .r-community-c-forum_sender--option").clone(true).addClass("yuque-sender")).hide();
-      $(".forum_editor").append(`<iframe style="width:100%;height:100%;" id="yuque" src="https://static.codemao.cn/coco/player/unstable/SykHjpiga.text/html"></iframe>`);
+      $(".forum_editor").append(`<iframe style="width:100%;height:100%;" id="yuque" src="https://static.codemao.cn/coco/player/unstable/S1DNd45FR.text/html?hash=FovRyC28hp2MQXGWL3UP9jrhHiCd&_theme=${theme}"></iframe>`);
       $("body").append(`<iframe id="preview" src="" style="width: 100%; height: 100%; z-index: -1; position: fixed;"></iframe>`);
       document.querySelector(".r-community-c-forum_sender--bottom_options .r-community-c-forum_sender--option.yuque-sender").onclick = async (e) => {
         let tag;
@@ -3197,6 +3206,7 @@ XMLHttpRequest.prototype.open = function () {
                   <p>
                     <embed type="text/html" src="${trueURL}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"  style="width:100%;height:${e.data}px; display: block; margin: 0px auto; max-width: 100%;" />
                   </p>`;
+                console.log(content);
                 GM_xmlhttpRequest({
                   url: "https://api.codemao.cn/web/forums/boards/" + tag + "/posts",
                   method: "POST",
@@ -3222,31 +3232,18 @@ XMLHttpRequest.prototype.open = function () {
                     <head>
                       <meta charset="UTF-8" />
                       <title>预览</title>
-                      <link
-                        rel="stylesheet"
-                        type="text/css"
-                        href="https://gw.alipayobjects.com/render/p/yuyan_npm/@alipay_lakex-doc/1.1.1/umd/doc.css"
-                      />
-                      <link
-                        rel="stylesheet"
-                        type="text/css"
-                        href="https://unpkg.com/antd@4.24.13/dist/antd.css"
-                      />
-                      <script
-                        crossorigin
-                        src="https://unpkg.com/react@18/umd/react.production.min.js"
-                      ></script>
-                      <script
-                        crossorigin
-                        src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
-                      ></script>
-                      <script src="https://gw.alipayobjects.com/render/p/yuyan_npm/@alipay_lakex-doc/1.1.1/umd/doc.umd.js"></script>
+                      <link rel="stylesheet" type="text/css"
+                        href="https://gw.alipayobjects.com/render/p/yuyan_npm/@alipay_lakex-doc/1.24.0/umd/doc.css" />
+                      <link rel="stylesheet" type="text/css" href="https://unpkg.com/antd@4.24.13/dist/antd.css" />
                     </head>
                     <body>
                       <div
                         id="root"
                         class="ne-doc-major-viewer"
                       ></div>
+                      <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+                      <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+                      <script src="https://gw.alipayobjects.com/render/p/yuyan_npm/@alipay_lakex-doc/1.24.0/umd/doc.umd.js"></script>
                       <script>
                         const { createOpenViewer } = window.Doc;
                         // 创建阅读器
@@ -3255,11 +3252,11 @@ XMLHttpRequest.prototype.open = function () {
                         viewer.setDocument("text/lake", decodeURIComponent(window.atob("${texts}")));
                         window.addEventListener(
                           "message",
-                          (e) => { 
+                          (e) => {
                             if (e.data === "dark") {
-                              console.log("dark");
+                              editor.theme.setActiveTheme('dark-mode');
                             } else if (e.data === "light") {
-                              console.log("light");
+                              editor.theme.setActiveTheme('default');
                             } else if (e.data === "height") {
                               window.top.postMessage(document.querySelector("#root").scrollHeight + 100, "*");
                             }
